@@ -1,5 +1,6 @@
-import { fetchBreeds, fetchCatByBreed } from './cat-api';
 import Notiflix from 'notiflix';
+import SlimSelect from 'slim-select';
+import { fetchBreeds, fetchCatByBreed } from './cat-api';
 
 const selectCat = document.querySelector('.breed-select');
 const catInfo = document.querySelector('.cat-info');
@@ -7,18 +8,18 @@ const loader = document.querySelector('.loader');
 const errorElement = document.querySelector('.error');
 
 fetchBreeds()
-  .then(breedsData => renderBreedsData(breedsData))
+  .then(breedsData => {
+    renderBreedsData(breedsData);
+    loader.classList.add('hidden');
+  })
   .catch(error => {
     Notiflix.Notify.failure(
-      `Oops! Something went wrong! Try reloading the page! Error: ${error}`,
-      errorNotification()
+      `Oops! Something went wrong while fetching breeds! Try reloading the page! Error: ${error}`
     );
-    errorElement.classList.remove('hidden');
-    loader.classList.add('hidden');
+    handleFetchError();
   });
-loader.classList.remove('hidden');
 
-function errorNotification() {
+function handleFetchError() {
   errorElement.classList.remove('hidden');
   loader.classList.add('hidden');
 }
@@ -33,6 +34,12 @@ function renderBreedsData(catBreeds) {
   loader.classList.add('hidden');
   errorElement.classList.add('hidden');
   console.log(catBreeds);
+
+  // new SlimSelect({
+  //   select: '#single',
+  // });
+
+  errorElement.classList.add('hidden');
 }
 
 selectCat.addEventListener('change', event => {

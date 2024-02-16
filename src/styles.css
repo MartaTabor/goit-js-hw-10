@@ -1,13 +1,35 @@
 body {
   background-color: lightpink;
+  font-family: 'Montserrat', sans-serif;
+}
+
+img {
+  border-radius: 10%;
 }
 
 .hidden {
   display: none;
 }
 
+.container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.breed-select {
+  margin: auto;
+}
+
 .cat-info {
   width: 500px;
+  margin: auto;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2em;
 }
 
 .loader {
