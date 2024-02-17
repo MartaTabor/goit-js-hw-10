@@ -88,10 +88,6 @@ h2 {
   width: auto;
 }
 
-.cat-photo:hover {
-  /* position: relative; */
-}
-
 .front,
 .back {
   position: relative;
