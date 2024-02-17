@@ -2,19 +2,24 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+h1 {
+  margin: 0;
+}
+
 h2 {
   text-align: center;
   font-size: 2em;
   margin: 0;
 }
 
-img {
+.cat-photo {
   border-radius: 5%;
   border: 3px solid;
   box-shadow: 10px 10px 5px -5px rgba(0, 0, 0, 0.4);
-  width: 80%;
   margin-top: 20px;
   margin-bottom: 20px;
+  height: 400px;
+  width: auto;
 }
 
 .hidden {
@@ -22,14 +27,14 @@ img {
 }
 
 .container {
+  margin: auto;
   background-color: #e8e8e8;
   background-image: url('./images/background1.jpg');
   background-position: 0%;
   background-size: contain;
   background-repeat: no-repeat;
   width: 70%;
-  height: 800px;
-  margin: auto;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,19 +43,19 @@ img {
   box-shadow: 10px 10px 5px -1px rgba(0, 0, 0, 0.5);
 }
 
+.selector-div {
+  width: 500px;
+}
+
 .breed-select {
-  width: 50%;
-  height: 25px;
-  font-size: 1em;
-  background-color: transparent;
-  text-align: center;
   box-shadow: 10px 10px 5px -5px rgba(0, 0, 0, 0.4);
 }
 
 .cat-data {
+  width: 800px;
+  height: 600px;
   border-radius: 5%;
   padding: 25px;
-  width: 30vw;
   margin-top: 50px;
   background-color: rgb(232, 232, 232, 0.5);
   box-shadow: 10px 10px 5px -1px rgba(0, 0, 0, 0.5);

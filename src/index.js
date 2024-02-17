@@ -28,10 +28,7 @@ function handleFetchError() {
 function renderBreedsData(catBreeds) {
   catBreeds.map(({ id, name }) => {
     cats.push({ text: name, value: id });
-    // return `<option value=${id}>${name}</option>`;
   });
-  // .join('');
-  // selectCat.insertAdjacentHTML('beforeend', markup);
 
   new SlimSelect({
     select: '.breed-select',
@@ -39,22 +36,22 @@ function renderBreedsData(catBreeds) {
     data: cats,
   });
 
-  loader.classList.add('hidden');
+  loader.classList.remove('hidden');
   errorElement.classList.add('hidden');
   console.log(catBreeds);
-
-  errorElement.classList.add('hidden');
 }
 
 selectCat.addEventListener('change', event => {
+  loader.classList.remove('hidden');
+
   fetchCatByBreed(event.target.value)
     .then(data => renderCatData(data[0]))
     .catch(error => {
       Notiflix.Notify.failure(`Error: ${error}`, errorNotification());
-      errorElement.classList.remove('hidden');
-      loader.classList.add('hidden');
+      errorElement.classList.remove('hidden').finally(() => {
+        loader.classList.add('hidden');
+      });
     });
-  loader.classList.remove('hidden');
 });
 
 function renderCatData(catData) {
@@ -63,7 +60,7 @@ function renderCatData(catData) {
   catInfo.innerHTML = '';
   catInfo.insertAdjacentHTML(
     'beforeend',
-    `<div class="cat-data"><h2>${name}</h2><img src="${url}"/><p>${description}</p><p><strong>Temperament: </strong>${temperament}</p></div>`
+    `<div class="cat-data"><h2>${name}</h2><img class="cat-photo" src="${url}"/><p>${description}</p><p><strong>Temperament: </strong>${temperament}</p></div>`
   );
   loader.classList.add('hidden');
 }
