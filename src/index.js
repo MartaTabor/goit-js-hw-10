@@ -8,7 +8,7 @@ const catInfo = document.querySelector('.cat-info');
 const loader = document.querySelector('.loader');
 const errorElement = document.querySelector('.error');
 
-const cats = [];
+const cats = [{ text: 'Choose a breed', value: 'placeholder' }];
 
 fetchBreeds()
   .then(breedsData => {
@@ -32,7 +32,6 @@ function renderBreedsData(catBreeds) {
 
   new SlimSelect({
     select: '.breed-select',
-    placeholderText: 'Choose a breed',
     data: cats,
   });
 
