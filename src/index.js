@@ -62,7 +62,7 @@ function renderCatData(catData) {
   catInfo.innerHTML = '';
   catInfo.insertAdjacentHTML(
     'beforeend',
-    `<div><h2>${name}</h2><img src="${url}" width="500"/><p>${description}</p><p><strong>Temperament: </strong>${temperament}</p></div>`
+    `<div class="cat-data"><h2>${name}</h2><img src="${url}" width="500"/><p>${description}</p><p><strong>Temperament: </strong>${temperament}</p></div>`
   );
   loader.classList.add('hidden');
 }
