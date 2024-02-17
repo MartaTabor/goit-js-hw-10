@@ -5,12 +5,16 @@ body {
 h2 {
   text-align: center;
   font-size: 2em;
+  margin: 0;
 }
 
 img {
   border-radius: 5%;
   border: 3px solid;
   box-shadow: 10px 10px 5px -5px rgba(0, 0, 0, 0.4);
+  width: 80%;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .hidden {
@@ -23,21 +27,21 @@ img {
   background-position: 0%;
   background-size: contain;
   background-repeat: no-repeat;
-  width: 80%;
-  height: 1000px;
+  width: 70%;
+  height: 800px;
   margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 100px;
+  padding-top: 50px;
   border-radius: 5%;
   box-shadow: 10px 10px 5px -1px rgba(0, 0, 0, 0.5);
 }
 
 .breed-select {
-  width: 500px;
-  height: 50px;
-  font-size: 1.5em;
+  width: 50%;
+  height: 25px;
+  font-size: 1em;
   background-color: transparent;
   text-align: center;
   box-shadow: 10px 10px 5px -5px rgba(0, 0, 0, 0.4);
@@ -45,11 +49,14 @@ img {
 
 .cat-data {
   border-radius: 5%;
-  padding: 50px;
-  width: 500px;
+  padding: 25px;
+  width: 30vw;
   margin-top: 50px;
   background-color: rgb(232, 232, 232, 0.5);
   box-shadow: 10px 10px 5px -1px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .loader {

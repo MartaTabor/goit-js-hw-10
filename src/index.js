@@ -1,11 +1,14 @@
 import Notiflix from 'notiflix';
 import SlimSelect from 'slim-select';
 import { fetchBreeds, fetchCatByBreed } from './cat-api';
+import 'slim-select/dist/slimselect.css';
 
 const selectCat = document.querySelector('.breed-select');
 const catInfo = document.querySelector('.cat-info');
 const loader = document.querySelector('.loader');
 const errorElement = document.querySelector('.error');
+
+const cats = [];
 
 fetchBreeds()
   .then(breedsData => {
@@ -13,9 +16,7 @@ fetchBreeds()
     loader.classList.add('hidden');
   })
   .catch(error => {
-    Notiflix.Notify.failure(
-      `Oops! Something went wrong while fetching breeds! Try reloading the page! Error: ${error}`
-    );
+    Notiflix.Notify.failure(`Error: ${error}`);
     handleFetchError();
   });
 
@@ -25,19 +26,22 @@ function handleFetchError() {
 }
 
 function renderBreedsData(catBreeds) {
-  const markup = catBreeds
-    .map(({ id, name }) => {
-      return `<option value=${id}>${name}</option>`;
-    })
-    .join('');
-  selectCat.insertAdjacentHTML('beforeend', markup);
+  catBreeds.map(({ id, name }) => {
+    cats.push({ text: name, value: id });
+    // return `<option value=${id}>${name}</option>`;
+  });
+  // .join('');
+  // selectCat.insertAdjacentHTML('beforeend', markup);
+
+  new SlimSelect({
+    select: '.breed-select',
+    placeholderText: 'Choose a breed',
+    data: cats,
+  });
+
   loader.classList.add('hidden');
   errorElement.classList.add('hidden');
   console.log(catBreeds);
-
-  // new SlimSelect({
-  //   select: '#single',
-  // });
 
   errorElement.classList.add('hidden');
 }
@@ -46,10 +50,7 @@ selectCat.addEventListener('change', event => {
   fetchCatByBreed(event.target.value)
     .then(data => renderCatData(data[0]))
     .catch(error => {
-      Notiflix.Notify.failure(
-        `Oops! Something went wrong! Try reloading the page! Error: ${error}`,
-        errorNotification()
-      );
+      Notiflix.Notify.failure(`Error: ${error}`, errorNotification());
       errorElement.classList.remove('hidden');
       loader.classList.add('hidden');
     });
@@ -62,7 +63,7 @@ function renderCatData(catData) {
   catInfo.innerHTML = '';
   catInfo.insertAdjacentHTML(
     'beforeend',
-    `<div class="cat-data"><h2>${name}</h2><img src="${url}" width="500"/><p>${description}</p><p><strong>Temperament: </strong>${temperament}</p></div>`
+    `<div class="cat-data"><h2>${name}</h2><img src="${url}"/><p>${description}</p><p><strong>Temperament: </strong>${temperament}</p></div>`
   );
   loader.classList.add('hidden');
 }
