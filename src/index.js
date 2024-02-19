@@ -8,7 +8,7 @@ const catInfo = document.querySelector('.cat-info');
 const loader = document.querySelector('.loader');
 const errorElement = document.querySelector('.error');
 
-const cats = [{ text: 'Choose a breed', value: 'placeholder' }];
+const cats = [];
 
 fetchBreeds()
   .then(breedsData => {
@@ -44,12 +44,10 @@ selectCat.addEventListener('change', event => {
   loader.classList.remove('hidden');
 
   fetchCatByBreed(event.target.value)
-    .then(data => renderCatData(data[0]))
+    .then(data => renderCatData(data[0]), errorElement.classList.add('hidden'))
     .catch(error => {
-      Notiflix.Notify.failure(`Error: ${error}`, errorNotification());
-      errorElement.classList.remove('hidden').finally(() => {
-        loader.classList.add('hidden');
-      });
+      Notiflix.Notify.failure(`Error: ${error}`, handleFetchError());
+      catInfo.innerHTML = '';
     });
 });
 
